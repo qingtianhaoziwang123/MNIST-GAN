@@ -39,6 +39,7 @@ import tensorflow as tf
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+import cv2
 #get_ipython().magic(u'matplotlib inline')
 
 
@@ -317,7 +318,7 @@ sample_image = generator(z_placeholder, 1, z_dimensions, reuse=True)
 z_batch = np.random.uniform(-1, 1, size=[1, z_dimensions])
 temp = (sess.run(sample_image, feed_dict={z_placeholder: z_batch}))
 my_i = temp.squeeze()
-plt.imshow(my_i, cmap='gray_r')
+status = cv2.imwrite('./result.png', my_i)
 
 
 # # Training Difficulties
