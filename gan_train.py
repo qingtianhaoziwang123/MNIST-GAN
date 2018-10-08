@@ -318,7 +318,7 @@ sample_image = generator(z_placeholder, 1, z_dimensions, reuse=True)
 z_batch = np.random.uniform(-1, 1, size=[1, z_dimensions])
 temp = (sess.run(sample_image, feed_dict={z_placeholder: z_batch}))
 my_i = temp.squeeze()
-status = cv2.imwrite('./result.png', my_i)
+status = cv2.imwrite('./result.jpg', my_i)
 
 
 # # Training Difficulties
