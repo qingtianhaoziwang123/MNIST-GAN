@@ -203,33 +203,34 @@ def generator(z, batch_size, z_dim, reuse=False):
 
 # In[4]:
 
-# sess = tf.Session()
+sess = tf.Session()
 z_dimensions = 100
-# z_test_placeholder = tf.placeholder(tf.float32, [None, z_dimensions])
+z_test_placeholder = tf.placeholder(tf.float32, [None, z_dimensions])
 
 
 # Now, we create a variable (sample_image) that holds the output of the generator, and also initialize the random noise vector that we’ll use as input. The np.random.uniform function has three arguments. The first and second define the range of the output distribution we want (between -1 and 1 in our case), and the third defines the the shape of the vector (1 x 100).
 
 # In[7]:
 
-# sample_image = generator(z_test_placeholder, 1, z_dimensions)
-# test_z = np.random.uniform(-1, 1, [1,z_dimensions])
+sample_image = generator(z_test_placeholder, 1, z_dimensions)
+test_z = np.random.uniform(-1, 1, [1,z_dimensions])
 
 
 # Next, we initialize all the variables, feed our test_z into the placeholder, and run the session. The sess.run function has two arguments. The first is called the "fetches" argument. It defines the value for you're interested in computing. For example, in our case, we want to see what the output of the generator is. If you look back at the last code snippet, the output of the generator function is stored in sample_image. Therefore, we'll use sample_image for our first argument. The second argument is where we input our feed_dict. This data structure is where we provide inputs to all of our placeholders. In our example, we need to feed our test_z variable into the z placeholder we defined earlier. 
 
 # In[ ]:
 
-# sess.run(tf.global_variables_initializer())
-# temp = (sess.run(sample_image, feed_dict={z_test_placeholder: test_z}))
+sess.run(tf.global_variables_initializer())
+temp = (sess.run(sample_image, feed_dict={z_test_placeholder: test_z}))
 
 
 # Finally, we can view the output through matplotlib. 
 
 # In[8]:
 
-# my_i = temp.squeeze()
-# plt.imshow(my_i, cmap='gray_r')
+my_i = temp.squeeze()
+plt.imsave("./bad_result.png", my_i, cmap='gray_r')
+#plt.imshow(my_i, cmap='gray_r')
 # plt.show()
 
 
